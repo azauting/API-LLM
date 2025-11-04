@@ -135,7 +135,12 @@ def generate_question(
         )
     )
     human = HumanMessage(
-        content=f"Tema: {req.context or 'general'}\n\nResponde con: {{\"question\": \"...\"}}"
+        content=(
+            f"Tema: {req.context or 'general'}\n"
+            "Genera UNA pregunta diferente cada vez: una sola pregunta, simple y directa. "
+            "Evita repetir preguntas previas. Devuelve SOLO un JSON con la clave 'question'. "
+            'Ejemplo de salida: {"question": "¿...?"}'
+        )
     )
 
     try:
