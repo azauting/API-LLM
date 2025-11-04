@@ -1,0 +1,22 @@
+### 🩵 Health check
+GET http://localhost:8000/health
+Accept: application/json
+
+
+### 🧠 Generar una pregunta
+POST http://localhost:8000/question/generate
+Content-Type: application/json
+
+{
+    "context": "trabajo en equipo"
+}
+
+
+### 💬 Evaluar una respuesta
+POST http://localhost:8000/answer/evaluate
+Content-Type: application/json
+
+{
+    "question": "¿Podrías describir una situación en la que tuviste que colaborar con un equipo para lograr un objetivo común?",
+    "answer": "Tuve que desarrollar un proyecto con mis compañeros de clase, donde cada uno aportó sus habilidades para completar la tarea a tiempo."
+}
