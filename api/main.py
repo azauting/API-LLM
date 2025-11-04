@@ -80,11 +80,6 @@ def parse_json_from_text(text: str) -> Any:
 
 
 def extract_text_from_llm_response(resp: Any) -> str:
-    """
-    Extrae el texto de respuesta del objeto que devuelva el LLM.
-    Maneja varios casos comunes: str, objeto con .content, .message, .generations.
-    Devuelve string vacío si no puede extraer texto.
-    """
     if resp is None:
         return ""
     if isinstance(resp, str):
@@ -101,7 +96,7 @@ def extract_text_from_llm_response(resp: Any) -> str:
             return str(resp.message.content)
         except Exception:
             pass
-    # LangChain style: .generations -> list(list(Generation)) with .text
+
     if hasattr(resp, "generations"):
         try:
             gens = resp.generations
@@ -114,12 +109,12 @@ def extract_text_from_llm_response(resp: Any) -> str:
                 gen0 = gens[0][0]
                 if hasattr(gen0, "text"):
                     return str(gen0.text)
-            # fallback: try first element string
+            
             if isinstance(gens[0][0], str):
                 return str(gens[0][0])
         except Exception:
             pass
-    # fallback: str()
+    
     try:
         return str(resp)
     except Exception:

@@ -17,7 +17,6 @@ const Index = () => {
 	const [isEvaluating, setIsEvaluating] = useState(false);
 	const { toast } = useToast();
 
-	// URL base de tu backend (ajústala si usas otro puerto)
 	const API_BASE = "http://127.0.0.1:8000";
 
 	const generateQuestion = async () => {
